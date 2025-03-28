@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import CharacterAnalysis from './components/CharacterAnalysis'
+import CharacterAnalysis from './components/characteranalysis'
 import Timeline from './components/Timeline'
 import ModernFrankensteins from './components/ModernFrankensteins'
 import QuoteGenerator from './components/QuoteGenerator'
@@ -36,7 +36,6 @@ function App() {
             <Timeline />
           </section>
           
-          {/* Rest of the sections remain unchanged */}
           <section className="mb-16 grid md:grid-cols-2 gap-8">
             <div className="ink-stain">
               <div className="section-header relative">
@@ -56,7 +55,15 @@ function App() {
             </div>
           </section>
           
-          {/* Rest of the component remains the same */}
+          {/* Restoring the Create Your Monster section */}
+          <section className="mb-16">
+            <div className="section-header relative">
+              <h2 className="text-4xl font-display text-center mb-12 text-blood-red-600 relative z-10">
+                Öz Monstrunu Yaradın
+              </h2>
+            </div>
+            <CreateYourMonster />
+          </section>
           
           <section className="mb-16">
             <div className="section-header relative">
@@ -67,7 +74,6 @@ function App() {
             <MonsterQuiz />
           </section>
           
-          {/* Restoring the laboratory notes section */}
           {showLabNotes && (
             <section className="mb-16">
               <div className="section-header relative">
@@ -79,7 +85,6 @@ function App() {
             </section>
           )}
           
-          {/* Restoring the button to show/hide laboratory notes */}
           <button 
             onClick={() => setShowLabNotes(!showLabNotes)}
             className="mb-16 px-4 py-2 bg-red-900 hover:bg-red-800 text-gray-200 rounded flex items-center mx-auto transition-all hover:scale-105"
