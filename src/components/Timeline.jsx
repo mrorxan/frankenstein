@@ -112,6 +112,29 @@ const getMoodColor = (mood) => {
 const Timeline = () => {
   const [activeEvent, setActiveEvent] = useState(timelineEvents[0]);
   const timelineRef = useRef(null);
+  const imageRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          observer.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px' });
+
+    imageRefs.current.forEach(img => {
+      if (img) observer.observe(img);
+    });
+
+    return () => {
+      imageRefs.current.forEach(img => {
+        if (img) observer.unobserve(img);
+      });
+    };
+  }, []);
   
   const scrollToEvent = (event) => {
     setActiveEvent(event);
@@ -160,7 +183,7 @@ const Timeline = () => {
         <div className="grid md:grid-cols-2 gap-6 bg-gray-800 p-6 rounded-md">
           <div className="event-image aspect-w-16 aspect-h-9 bg-gray-700 rounded-md overflow-hidden">
             {activeEvent.image ? (
-              <img loading="lazy" src={activeEvent.image} alt={activeEvent.title} className="w-full h-full object-cover" style={{ height: "300px", width: "100%", objectFit: "cover" }} onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.jpg'; }} />
+              <img loading="lazy" src={activeEvent.image} alt={activeEvent.title} className="w-full h-full object-cover" style={{ height: "300px", width: "100%", objectFit: "cover" }} onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.jpg'; }} data-src={activeEvent.image} />
             ) : (
               <div className="flex items-center justify-center h-full">
                 <div className="text-gray-500 text-center p-4">
