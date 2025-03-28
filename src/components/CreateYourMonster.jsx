@@ -225,4 +225,214 @@ const CreateYourMonster = () => {
   );
 };
 
+const MonsterCreator = () => {
+  const [monsterParts, setMonsterParts] = useState({
+    brain: 'normal',
+    eyes: 'normal',
+    heart: 'normal',
+    limbs: 'normal',
+    skin: 'normal'
+  });
+  
+  const [monsterName, setMonsterName] = useState('');
+  const [monsterCreated, setMonsterCreated] = useState(false);
+  
+  const partOptions = {
+    brain: ['normal', 'criminal', 'genius', 'animal'],
+    eyes: ['normal', 'yellow', 'red', 'black'],
+    heart: ['normal', 'cold', 'passionate', 'none'],
+    limbs: ['normal', 'extra', 'mismatched', 'mechanical'],
+    skin: ['normal', 'pale', 'decayed', 'stitched']
+  };
+  
+  const handlePartChange = (part, value) => {
+    setMonsterParts({
+      ...monsterParts,
+      [part]: value
+    });
+  };
+  
+  const handleNameChange = (e) => {
+    setMonsterName(e.target.value);
+  };
+  
+  const createMonster = () => {
+    if (monsterName.trim() === '') {
+      alert('Monstrunuza ad verin!');
+      return;
+    }
+    setMonsterCreated(true);
+  };
+  
+  const resetMonster = () => {
+    setMonsterParts({
+      brain: 'normal',
+      eyes: 'normal',
+      heart: 'normal',
+      limbs: 'normal',
+      skin: 'normal'
+    });
+    setMonsterName('');
+    setMonsterCreated(false);
+  };
+  
+  const getMonsterDescription = () => {
+    let description = '';
+    
+    // Brain
+    if (monsterParts.brain === 'criminal') {
+      description += 'Cinayətkar düşüncələrlə dolu, ';
+    } else if (monsterParts.brain === 'genius') {
+      description += 'Dahi zəkaya sahib, ';
+    } else if (monsterParts.brain === 'animal') {
+      description += 'Heyvan instinktləri ilə idarə olunan, ';
+    }
+    
+    // Eyes
+    if (monsterParts.eyes === 'yellow') {
+      description += 'sarı gözləri ilə hər şeyi izləyən, ';
+    } else if (monsterParts.eyes === 'red') {
+      description += 'qırmızı gözləri ilə qorxu saçan, ';
+    } else if (monsterParts.eyes === 'black') {
+      description += 'qara gözləri ilə qaranlığı əks etdirən, ';
+    }
+    
+    // Heart
+    if (monsterParts.heart === 'cold') {
+      description += 'soyuq ürəkli, ';
+    } else if (monsterParts.heart === 'passionate') {
+      description += 'ehtirasla dolu ürəyi olan, ';
+    } else if (monsterParts.heart === 'none') {
+      description += 'ürəksiz, ';
+    }
+    
+    // Limbs
+    if (monsterParts.limbs === 'extra') {
+      description += 'əlavə ətrafları olan, ';
+    } else if (monsterParts.limbs === 'mismatched') {
+      description += 'uyğunsuz ətrafları olan, ';
+    } else if (monsterParts.limbs === 'mechanical') {
+      description += 'mexaniki ətrafları olan, ';
+    }
+    
+    // Skin
+    if (monsterParts.skin === 'pale') {
+      description += 'solğun dərili ';
+    } else if (monsterParts.skin === 'decayed') {
+      description += 'çürümüş dərili ';
+    } else if (monsterParts.skin === 'stitched') {
+      description += 'tikilmiş dərili ';
+    } else {
+      description += 'normal dərili ';
+    }
+    
+    return description + 'bir məxluq.';
+  };
+  
+  return (
+    <div className="create-monster bg-gray-800 p-6 rounded-md">
+      {!monsterCreated ? (
+        <div className="monster-creator">
+          <p className="mb-6 text-gray-300">Viktor Frankenstein kimi öz məxluqunuzu yaradın. Hissələri seçin və ona ad verin.</p>
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {Object.keys(partOptions).map(part => (
+              <div key={part} className="part-selector">
+                <label className="block mb-2 text-lg font-semibold text-electric-blue-400 capitalize">
+                  {part === 'brain' ? 'Beyin' : 
+                   part === 'eyes' ? 'Gözlər' : 
+                   part === 'heart' ? 'Ürək' : 
+                   part === 'limbs' ? 'Ətraflar' : 
+                   part === 'skin' ? 'Dəri' : part}
+                </label>
+                <select 
+                  value={monsterParts[part]}
+                  onChange={(e) => handlePartChange(part, e.target.value)}
+                  className="w-full bg-gray-700 text-gray-200 p-2 rounded border border-gray-600 focus:border-electric-blue-500 focus:outline-none"
+                >
+                  {partOptions[part].map(option => (
+                    <option key={option} value={option}>
+                      {option === 'normal' ? 'Normal' : 
+                       option === 'criminal' ? 'Cinayətkar' : 
+                       option === 'genius' ? 'Dahi' : 
+                       option === 'animal' ? 'Heyvan' : 
+                       option === 'yellow' ? 'Sarı' : 
+                       option === 'red' ? 'Qırmızı' : 
+                       option === 'black' ? 'Qara' : 
+                       option === 'cold' ? 'Soyuq' : 
+                       option === 'passionate' ? 'Ehtirasli' : 
+                       option === 'none' ? 'Yoxdur' : 
+                       option === 'extra' ? 'Əlavə' : 
+                       option === 'mismatched' ? 'Uyğunsuz' : 
+                       option === 'mechanical' ? 'Mexaniki' : 
+                       option === 'pale' ? 'Solğun' : 
+                       option === 'decayed' ? 'Çürümüş' : 
+                       option === 'stitched' ? 'Tikilmiş' : option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mb-8">
+            <label className="block mb-2 text-lg font-semibold text-electric-blue-400">
+              Məxluqun Adı
+            </label>
+            <input 
+              type="text" 
+              value={monsterName}
+              onChange={handleNameChange}
+              className="w-full bg-gray-700 text-gray-200 p-2 rounded border border-gray-600 focus:border-electric-blue-500 focus:outline-none"
+              placeholder="Məxluqunuza ad verin..."
+            />
+          </div>
+          
+          <button 
+            onClick={createMonster}
+            className="px-6 py-3 bg-blood-red-700 hover:bg-blood-red-600 text-white rounded-md transition-colors font-bold flex items-center mx-auto"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Məxluqu Yarat
+          </button>
+        </div>
+      ) : (
+        <div className="monster-result text-center">
+          <h3 className="text-2xl font-display text-electric-blue-400 mb-4">{monsterName}</h3>
+          
+          <div className="monster-image bg-gray-700 h-64 flex items-center justify-center rounded-md mb-6">
+            <div className="text-6xl">👹</div>
+          </div>
+          
+          <p className="text-gray-300 mb-8">{getMonsterDescription()}</p>
+          
+          <div className="monster-analysis mb-8">
+            <h4 className="text-xl font-semibold text-blood-red-500 mb-4">Psixoloji Analiz</h4>
+            <p className="text-gray-300">
+              {monsterParts.brain === 'criminal' ? 'Bu məxluq cəmiyyət üçün təhlükəlidir və nəzarət altında saxlanılmalıdır.' : 
+               monsterParts.brain === 'genius' ? 'Bu məxluq yüksək intellektə malikdir və düzgün istiqamətləndirildikdə faydalı ola bilər.' : 
+               monsterParts.brain === 'animal' ? 'Bu məxluq instinktləri ilə hərəkət edir və təhlükəli ola bilər.' : 
+               'Bu məxluq normal insan düşüncəsinə malikdir.'}
+              {' '}
+              {monsterParts.heart === 'cold' ? 'Empatiya qabiliyyəti yoxdur və başqalarına qarşı laqeyddir.' : 
+               monsterParts.heart === 'passionate' ? 'Güclü emosiyalara malikdir və impulsiv hərəkət edə bilər.' : 
+               monsterParts.heart === 'none' ? 'Hissləri yoxdur və tamamilə məntiqlə hərəkət edir.' : 
+               'Normal emosional reaksiyalara malikdir.'}
+            </p>
+          </div>
+          
+          <button 
+            onClick={resetMonster}
+            className="px-6 py-3 bg-gray-600 hover:bg-gray-500 text-white rounded-md transition-colors font-bold"
+          >
+            Yenidən Başla
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default CreateYourMonster;
