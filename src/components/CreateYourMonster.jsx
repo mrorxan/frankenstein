@@ -46,7 +46,7 @@ const CreateYourMonster = () => {
     } else {
       description += 'İnsan emosiyasından məhrumdur, soyuq məntiq və ya ibtidai qəzəblə hərəkət edir.';
     }
-    
+     
     // Add rage modifier
     if (rage > 75) {
       description += ' Nifrət və intiqamla dolu, onu rədd edənlər üçün son dərəcə təhlükəlidir.';
