@@ -54,11 +54,9 @@ const quotes = [
 const QuoteGenerator = () => {
   const [currentQuote, setCurrentQuote] = useState(quotes[0]);
   const [fadeIn, setFadeIn] = useState(true);
-  const [lightningEffect, setLightningEffect] = useState(false);
   
   const generateNewQuote = () => {
     setFadeIn(false);
-    // Remove the lightning effect that causes the blue flash
     
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * quotes.length);

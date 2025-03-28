@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import CharacterAnalysis from './components/characteranalysis'
+import CharacterAnalysis from './components/CharacterAnalysis'; // Corrected the import path
 import Timeline from './components/Timeline'
 import ModernFrankensteins from './components/ModernFrankensteins'
 import QuoteGenerator from './components/QuoteGenerator'
