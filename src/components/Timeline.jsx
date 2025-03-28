@@ -161,6 +161,7 @@ const Timeline = () => {
           <div className="event-image aspect-w-16 aspect-h-9 bg-gray-700 rounded-md overflow-hidden">
             {activeEvent.image ? (
               <img 
+                loading="lazy"
                 src={activeEvent.image} 
                 alt={activeEvent.title}
                 className="w-full h-full object-cover"

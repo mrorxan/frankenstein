@@ -9,7 +9,7 @@ const characters = [
     traits: [
       { name: 'Ambisiya', description: 'Nəticələrindən asılı olmayaraq elmi kəşfləri can atması.' },
       { name: 'Günahkarlıq', description: 'Məxluqu yaratdıqdan sonra onu bürüyən dərin peşmanlıq.' },
-      { name: 'Tanrı Kompleksi', description: 'Həyat və ölüm üzərində ilahi güc əldə etmək istəyi.' }
+      { name: 'Tarı Kompleksi', description: 'Həyat və ölüm üzərində ilahi güc əldə etmək istəyi.' }
     ],
     quotes: [
       "Bilik əldə etmək nə qədər təhlükəlidir və doğma şəhərinin dünya olduğuna inanan insan, təbiətinin icazə verəcəyindən daha böyük olmağa can atan insandan nə qədər xoşbəxtdir.",
@@ -137,6 +137,7 @@ const CharacterAnalysis = () => {
         <div className="character-image-container relative">
           <div className="bg-gray-700 rounded-md overflow-hidden" style={{ height: "500px", width: "100%" }}>
             <img 
+              loading="lazy"
               src={activeCharacter.image} 
               alt={activeCharacter.name}
               className="w-full h-full object-cover object-center"
