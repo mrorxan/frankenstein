@@ -68,7 +68,7 @@ const CreateYourMonster = () => {
   return (
     <div className="create-monster bg-gray-800 p-6 rounded-md relative overflow-hidden">
       <div className="absolute inset-0 bg-cover bg-center opacity-5" 
-           style={{ backgroundImage: "url('/images/laboratory-equipment.jpg')" }}></div>
+           style={{ backgroundImage: "url('./images/laboratory-equipment.jpg')" }}></div>
       
       <div className="relative z-20">
         <div className="grid md:grid-cols-2 gap-8">
